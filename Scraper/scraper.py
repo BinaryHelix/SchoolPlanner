@@ -11,31 +11,36 @@ courseDept = 'MATH'
 a_courseNumber = ['001','002','003']
 a_term = ['10', '20', '30']
 
+
+#def getDepartmentList():
+
+
 #List classes available
-"""for termCount in range (0,3):
-    urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDept + "&region=" + region
-    print '\n\n+-------------------------------------------+\n'
-    if a_term[termCount] == '10':
-        alias = "Summer"
-    elif a_term[termCount] == '20':
-        alias = "Fall"
-    elif a_term[termCount] == '30':
-        alias = "Spring"
-    print alias + ' ' + str(academicYear) + ' ' + region + '\n'
-    print urlDept #DEBUG
-    print '\n\n'
+def getClassNumbers(a_term, courseDept, region, academicYear):
+    for termCount in range (0,numOfTerms):
+        urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDept + "&region=" + region
+        print '\n\n+-------------------------------------------+\n'
+        if a_term[termCount] == '10':
+            alias = "Summer"
+        elif a_term[termCount] == '20':
+            alias = "Fall"
+        elif a_term[termCount] == '30':
+            alias = "Spring"
+        print alias + ' ' + str(academicYear) + ' ' + region + '\n'
+        print urlDept #DEBUG
+        print '\n\n'
 
-    usock = urllib2.urlopen(urlDept)
-    data = usock.read()
-    usock.close()
-    data = [line.strip() for line in data.split('\n') if line.strip()]
+        usock = urllib2.urlopen(urlDept)
+        data = usock.read()
+        usock.close()
+        data = [line.strip() for line in data.split('\n') if line.strip()]
 
-    for line in data:
-            regexDept = re.compile('MATH....\d\d\d.')
-            regexDept.translate(None, '<')
+        for line in data:
+            regexDept = re.compile('MATH....(\d\d\d).')
             for match in regexDept.finditer(line.rstrip()):
                 if match:
-                    print match.groups()"""
+                    print match.groups()
+
 
 #List individual listings for all classes in a department
 def getClassList(a_term, a_courseNumber, courseDept, region, academicYear):
@@ -72,4 +77,5 @@ def getClassList(a_term, a_courseNumber, courseDept, region, academicYear):
 
 
 
-getClassList(a_term, a_courseNumber, courseDept, region, academicYear)
+#getClassList(a_term, a_courseNumber, courseDept, region, academicYear)
+getClassNumbers(a_term, courseDept, region, academicYear)
