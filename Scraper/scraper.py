@@ -2,24 +2,21 @@ import urllib2
 import re           # for regex matching
 #import Course
 
-numOfTerms = 3
-numOfCourses = 3
-
 academicYear = 1314
 region = 'ALL'
 courseDept = 'MATH'
-a_courseNumber = ['001','002','003']
+a_courseNumber = []
 a_term = ['10', '20', '30']
 
+numOfTerms = len(a_term)
 
 #def getDepartmentList():
-
 
 #List classes available
 def getClassNumbers(a_term, courseDept, region, academicYear):
     for termCount in range (0,numOfTerms):
         urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDept + "&region=" + region
-        print '\n\n+-------------------------------------------+\n'
+        """print '\n\n+-------------------------------------------+\n'
         if a_term[termCount] == '10':
             alias = "Summer"
         elif a_term[termCount] == '20':
@@ -28,7 +25,7 @@ def getClassNumbers(a_term, courseDept, region, academicYear):
             alias = "Spring"
         print alias + ' ' + str(academicYear) + ' ' + region + '\n'
         print urlDept #DEBUG
-        print '\n\n'
+        print '\n\n'"""
 
         usock = urllib2.urlopen(urlDept)
         data = usock.read()
@@ -36,11 +33,15 @@ def getClassNumbers(a_term, courseDept, region, academicYear):
         data = [line.strip() for line in data.split('\n') if line.strip()]
 
         for line in data:
-            regexDept = re.compile('MATH....(\d\d\d).')
-            for match in regexDept.finditer(line.rstrip()):
+            regexDept = re.compile(courseDept + '....(\d\d\d).')
+            for match in regexDept.finditer(line.rstrip('<')):
                 if match:
-                    print match.groups()
+                    a_courseNumber.extend(match.groups())
+        return a_courseNumber
 
+getClassNumbers(a_term, courseDept, region, academicYear)
+
+numOfCourses = len(a_courseNumber)
 
 #List individual listings for all classes in a department
 def getClassList(a_term, a_courseNumber, courseDept, region, academicYear):
@@ -73,9 +74,4 @@ def getClassList(a_term, a_courseNumber, courseDept, region, academicYear):
                     if match:
                         print match.groups()
 
-
-
-
-
-#getClassList(a_term, a_courseNumber, courseDept, region, academicYear)
-getClassNumbers(a_term, courseDept, region, academicYear)
+getClassList(a_term, a_courseNumber, courseDept, region, academicYear)
