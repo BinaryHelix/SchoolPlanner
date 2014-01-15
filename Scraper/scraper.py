@@ -37,6 +37,7 @@ def getDepartmentList(region, academicYear, a_term):
         for line in data:
             regexDeptAll = re.compile('>([A-Z].......)<')
             for match in regexDeptAll.finditer(line.rstrip()):
+                #Issue with department uniqueness here#
                 if match.groups() not in courseDept:
                     print match.groups()
                     courseDept.extend(match.groups())
