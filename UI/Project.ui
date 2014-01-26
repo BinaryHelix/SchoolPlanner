@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1012</width>
+    <width>1029</width>
     <height>895</height>
    </rect>
   </property>
@@ -20,17 +20,17 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>871</width>
-      <height>581</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1021</width>
+      <height>591</height>
      </rect>
     </property>
     <property name="contextMenuPolicy">
      <enum>Qt::DefaultContextMenu</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>7</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -39,50 +39,23 @@
      <attribute name="title">
       <string>Welcome</string>
      </attribute>
-    </widget>
-    <widget class="QWidget" name="DegreeInfoTab">
-     <attribute name="title">
-      <string>Degree Planner</string>
-     </attribute>
-     <widget class="QComboBox" name="comboBox_5">
+     <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>131</width>
-        <height>22</height>
+        <x>940</x>
+        <y>540</y>
+        <width>71</width>
+        <height>20</height>
        </rect>
       </property>
-      <item>
-       <property name="text">
-        <string>Delta College AA/AS</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>CSU</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>CSU-IGETC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>UC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>UC-IGETC</string>
-       </property>
-      </item>
+      <property name="text">
+       <string>Version #</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="PlannerTab">
      <attribute name="title">
-      <string>Schedule Planner</string>
+      <string>Semester Schedule Planner</string>
      </attribute>
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
@@ -260,52 +233,7 @@
       </property>
       <item>
        <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
+        <string>#Dept</string>
        </property>
       </item>
      </widget>
@@ -320,27 +248,7 @@
       </property>
       <item>
        <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>New Item</string>
+        <string>#Classes</string>
        </property>
       </item>
      </widget>
@@ -373,11 +281,60 @@
      <widget class="QListView" name="listView">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>170</y>
-        <width>411</width>
-        <height>381</height>
+        <width>431</width>
+        <height>391</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_2">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>170</y>
+        <width>441</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>161</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Match Major Reqs. #AUTOFILL</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>70</y>
+        <width>321</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Highlight Major Reqs #ONLY SHOW IF MAJOR IS SELECTED</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>100</y>
+        <width>321</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Highlight Schedule Errors #Debug will be automatic in final build</string>
       </property>
      </widget>
     </widget>
@@ -385,6 +342,215 @@
      <attribute name="title">
       <string>Schedule</string>
      </attribute>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Whole Selected Schedule</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Print</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_5">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>0</y>
+        <width>871</width>
+        <height>571</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="DegreeInfoTab">
+     <attribute name="title">
+      <string>Degree Planner</string>
+     </attribute>
+     <widget class="QComboBox" name="comboBox_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Delta College AA/AS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CSU</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CSU-IGETC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>UC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>UC-IGETC</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>#Majors</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>0</y>
+        <width>721</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="TransferTab">
+     <attribute name="title">
+      <string>Transfer Info</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>GetMajor</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Delta AA/AS</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>UC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CSU</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>161</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Pull Info from assist.org</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_3">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>70</y>
+        <width>256</width>
+        <height>192</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_4">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>70</y>
+        <width>256</width>
+        <height>192</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>40</y>
+        <width>161</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gen Ed Requirements</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>40</y>
+        <width>211</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Major Requirements / Recommended</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="CalendarTab">
      <attribute name="title">
@@ -395,15 +561,67 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>871</width>
+        <width>791</width>
         <height>561</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>10</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Integrate Google Calendar &amp; Sync</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>40</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Get Final Dates for classes</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>60</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Free Entry</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>530</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Print</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="RecommendedTab">
      <attribute name="title">
-      <string>Recommended</string>
+      <string>Recommended Education Plan</string>
      </attribute>
     </widget>
     <widget class="QWidget" name="ScholarshipTab">
@@ -428,15 +646,54 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="TransferTab">
-     <attribute name="title">
-      <string>Transfer Info</string>
-     </attribute>
-    </widget>
     <widget class="QWidget" name="MapTab">
      <attribute name="title">
       <string>Map</string>
      </attribute>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>50</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delta Map Image</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Google Maps centerd on Delta?</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="emailTab">
+     <attribute name="title">
+      <string>Email</string>
+     </attribute>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Browser at email login</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -445,7 +702,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1012</width>
+     <width>1029</width>
      <height>21</height>
     </rect>
    </property>
@@ -453,8 +710,15 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuLoad_File_Ctrl_L">
+     <property name="title">
+      <string>Load File (Ctrl-L)</string>
+     </property>
+     <addaction name="actionLast_Opened_File"/>
+     <addaction name="actionFree_Selection_from_Disk"/>
+    </widget>
     <addaction name="actionSave_Schedule_Ctrl_S"/>
-    <addaction name="actionLoad_File"/>
+    <addaction name="menuLoad_File_Ctrl_L"/>
     <addaction name="actionDebug"/>
     <addaction name="actionExit_X"/>
    </widget>
@@ -462,22 +726,22 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionUndo_Ctrl_Z"/>
+    <addaction name="actionRedo_Ctrl_R"/>
    </widget>
    <widget class="QMenu" name="menuInfo">
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionReadme"/>
+    <addaction name="actionHelp_File"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuInfo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionLoad_File">
-   <property name="text">
-    <string>Load File (Ctrl-L)</string>
-   </property>
-  </action>
   <action name="actionExit_X">
    <property name="text">
     <string>Exit (Ctrl-X)</string>
@@ -491,6 +755,41 @@ p, li { white-space: pre-wrap; }
   <action name="actionSave_Schedule_Ctrl_S">
    <property name="text">
     <string>Save Schedule (Ctrl-S)</string>
+   </property>
+  </action>
+  <action name="actionUndo_Ctrl_Z">
+   <property name="text">
+    <string>Undo (Ctrl- Z)</string>
+   </property>
+  </action>
+  <action name="actionRedo_Ctrl_R">
+   <property name="text">
+    <string>Redo (Ctrl-R)</string>
+   </property>
+  </action>
+  <action name="actionLast_Opened_File">
+   <property name="text">
+    <string>Last Opened File</string>
+   </property>
+  </action>
+  <action name="actionFree_Selection_from_Disk">
+   <property name="text">
+    <string>Free Selection from Disk</string>
+   </property>
+  </action>
+  <action name="actionReadme">
+   <property name="text">
+    <string>Readme</string>
+   </property>
+  </action>
+  <action name="actionHelp_File">
+   <property name="text">
+    <string>Help File</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

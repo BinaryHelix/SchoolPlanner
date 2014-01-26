@@ -39,8 +39,7 @@ def getDepartmentList(region, academicYear, a_term):
             for match in regexDeptAll.finditer(line.rstrip()):
                 #Issue with department uniqueness here#
                 if match.groups() not in courseDept:
-                    print match.groups()
-                    courseDept.extend(match.groups())
+                    courseDept.append(match.groups())
 
                     #TERM DEBUG
                     """if a_term[termCount] == '10':
@@ -65,7 +64,6 @@ numOfDeptFall = len(courseDeptFall)"""
 """print numOfDeptSummer
 print numOfDeptSpring
 print numOfDeptFall"""
-print numOfDept
 
 
 
@@ -87,7 +85,7 @@ def getAllClasses(a_term, courseDept, courseDeptFall, courseDeptSpring, region, 
                 regexName = re.compile('TD VALIGN="TOP">.({1,100})')
                 for match in regexName.finditer(line.rstrip()):
                     if match:
-                        a_courseTitle.extend(match.groups())
+                        a_courseTitle.append(match.groups())
 
     return a_courseNumber
     return a_courseTitle
@@ -165,7 +163,7 @@ def getAllClasses(a_term, courseDept, courseDeptFall, courseDeptSpring, region, 
 
 
 
-#getAllClasses(a_term, courseDeptSummer, courseDeptFall, courseDeptSpring, region, academicYear)
+getAllClasses(a_term, courseDeptSummer, courseDeptFall, courseDeptSpring, region, academicYear)
 
 """numOfCourseSummer = len(a_courseNumberSummer)
 numOfCourseFall = len(a_courseNumberFall)
