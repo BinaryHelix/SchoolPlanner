@@ -6,23 +6,12 @@ academicYear = 1314
 region = 'ALL'
 
 courseDept = []
-"""courseDeptSummer = []
-courseDeptFall = []
-courseDeptSpring = []"""
-
 a_courseNumber = []
-"""a_courseNumberSummer = []
-a_courseNumberFall = []
-a_courseNumberSpring = []"""
-
 a_courseTitle = []
-"""a_courseTitleSummer = []
-a_courseTitleFall = []
-a_courseTitleSpring = []"""
-
 a_courseInfo = []
 a_term = ['10', '20', '30']
 numOfTerms = len(a_term)
+
 
 #Lists all Departments
 def getDepartmentList(region, academicYear, a_term):
@@ -35,155 +24,70 @@ def getDepartmentList(region, academicYear, a_term):
         data = [line.strip() for line in data.split('\n') if line.strip()]
 
         for line in data:
-            regexDeptAll = re.compile('>([A-Z].......)<')
+            regexDeptAll = re.compile('>(\w+\s*\w*)<')
             for match in regexDeptAll.finditer(line.rstrip()):
-                #Issue with department uniqueness here#
-                if match.groups() not in courseDept:
-                    courseDept.append(match.groups())
 
-                    #TERM DEBUG
-                    """if a_term[termCount] == '10':
-                        courseDeptSummer.extend(match.groups())
-                    elif a_term[termCount] == '20':
-                        courseDeptFall.extend(match.groups())
-                    elif a_term[termCount] == '30':
-                        courseDeptSpring.extend(match.groups())"""
+                #Issue with department uniqueness here#
+                
+                departmentCode = formatWhitespaceForURL(match.groups()[0])
+                if departmentCode not in courseDept:
+                    courseDept.append(departmentCode)
 
     return courseDept
-    """return courseDeptSummer
-    return courseDeptFall
-    return courseDeptSpring"""
 
-getDepartmentList(region, academicYear, a_term)
 
-numOfDept = len(courseDept)
-"""numOfDeptSummer = len(courseDeptSummer)
-numOfDeptSpring = len(courseDeptSpring)
-numOfDeptFall = len(courseDeptFall)"""
+# Convert whitespace characters into HTML url readable %20
+def formatWhitespaceForURL(item):
+    newWord = ""
 
-"""print numOfDeptSummer
-print numOfDeptSpring
-print numOfDeptFall"""
+    for char in item:
+        if char == " ":
+            char = "%20"
+        newWord += char
 
+    return newWord
 
 
 #List all classes available for all Departments
-def getAllClasses(a_term, courseDept, courseDeptFall, courseDeptSpring, region, academicYear):
+def getAllClasses(a_term, courseDept, region, academicYear):
     for termCount in range (0,numOfTerms):
-        for courseDeptCount in range (0,numOfDept):
-            urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDept[courseDeptCount] + "&region=" + region
+        j = 0
+        for courseDeptCount in range (1,numOfDept):
+            urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + str(courseDept[courseDeptCount]) + "&region=" + region
+            print str(termCount) + ":" + str(courseDeptCount) + ":" + urlDept
             usock = urllib2.urlopen(urlDept)
             data = usock.read()
             usock.close()
             data = [line.strip() for line in data.split('\n') if line.strip()]
 
             for line in data:
-                regexDept = re.compile('[A-Z| ]{1,12}\d\d\d[A-Z|<]')
+                matchFound = 0
+
+                # Grab the number of the course
+                regexDept = re.compile('([A-Z| ]{1,12})(\d\d\d)[A-Z|<]')
                 for match in regexDept.finditer(line.rstrip()):
                     if match:
-                        a_courseNumber.extend(match.groups())
-                regexName = re.compile('TD VALIGN="TOP">.({1,100})')
+                        a_courseNumber.append(match.group(0) + " " + match.group(1))
+                        print "Num: " + a_courseNumber[courseDeptCount-1 + j]
+                        j += 1
+                        matchFound = 1
+                
+                if matchFound == 1:
+                    j -= 1
+                
+                i = 0
+                # Grab the title of the course
+                regexName = re.compile('TD VALIGN="TOP">([\w\s]+)')
                 for match in regexName.finditer(line.rstrip()):
                     if match:
                         a_courseTitle.append(match.groups())
+                        print a_courseTitle[i]
+                        i += 1
 
     return a_courseNumber
     return a_courseTitle
 
-    """for termCount in range (0,numOfTerms):
-        for courseDeptCount in range (0,numOfDeptSummer):
-            urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDeptSummer[courseDeptCount] + "&region=" + region
-            usock = urllib2.urlopen(urlDept)
-            data = usock.read()
-            usock.close()
-            data = [line.strip() for line in data.split('\n') if line.strip()]
 
-            for line in data:
-                regexDept = re.compile('[A-Z| ]{1,12}\d\d\d[A-Z|<]')
-                for match in regexDept.finditer(line.rstrip()):
-                    if match:
-                        a_courseNumberSummer.extend(match.groups())
-                regexName = re.compile('TD VALIGN="TOP">.({1,100})')
-                for match in regexName.finditer(line.rstrip()):
-                    if match:
-                        a_courseTitleSummer.extend(match.groups())
-
-    return a_courseNumberSummer
-    return a_courseTitleSummer
-
-
-    for termCount in range (0,numOfTerms):
-        for courseDeptCount in range (0,numOfDeptFall):
-            urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDeptFall[courseDeptCount] + "&region=" + region
-            usock = urllib2.urlopen(urlDept)
-            data = usock.read()
-            usock.close()
-            data = [line.strip() for line in data.split('\n') if line.strip()]
-
-            for line in data:
-                regexDept = re.compile('[A-Z| ]{1,12}\d\d\d[A-Z|<]')
-                for match in regexDept.finditer(line.rstrip()):
-                    if match:
-                        a_courseNumberFall.extend(match.groups())
-                regexName = re.compile('TD VALIGN="TOP">.({1,100})')
-                for match in regexName.finditer(line.rstrip()):
-                    if match:
-                        a_courseTitleFall.extend(match.groups())
-
-
-    return a_courseNumberFall
-    return a_courseTitleFall
-
-
-
-    for termCount in range (0,numOfTerms):
-        for courseDeptCountSpring in range (0,numOfDeptSpring):
-            urlDept = 'http://classes.deltacollege.edu/classSchedule/courses.cfm?term=' + a_term[termCount] + '&year=' + '20' + str(academicYear) + '&dept=' + courseDeptSpring[courseDeptCountSpring] + "&region=" + region
-            usock = urllib2.urlopen(urlDept)
-            data = usock.read()
-            usock.close()
-            data = [line.strip() for line in data.split('\n') if line.strip()]
-
-            for line in data:
-                regexDept = re.compile('[A-Z| ]{1,12}\d\d\d[A-Z|<]')
-                for match in regexDept.finditer(line.rstrip()):
-                    if match:
-                        a_courseNumberSpring.extend(match.groups())
-                regexName = re.compile('TD VALIGN="TOP">.({1,100})')
-                for match in regexName.finditer(line.rstrip()):
-                    if match:
-                        a_courseTitleSpring.extend(match.groups())
-
-
-
-
-    return a_courseNumberSpring
-    return a_courseTitleSpring"""
-
-
-
-
-getAllClasses(a_term, courseDeptSummer, courseDeptFall, courseDeptSpring, region, academicYear)
-
-"""numOfCourseSummer = len(a_courseNumberSummer)
-numOfCourseFall = len(a_courseNumberFall)
-numOfCourseSpring = len(a_courseNumberSpring)"""
-
-numOfCourse = len(a_courseNumber)
-
-"""numOfTitleSummer = len(a_courseTitleSummer)
-numOfTitleFall = len(a_courseTitleFall)
-numOfTitleSpring = len(a_courseTitleSpring)"""
-
-numOfTitle = len(a_courseTitle)
-
-"""print numOfCourseSummer
-print numOfCourseFall
-print numOfCourseSpring
-
-print numOfTitleSummer
-print numOfTitleFall
-print numOfTitleSpring"""
 
 #List individual listings for all classes in all Departments
 def getAllEntries(a_term, a_courseNumber, courseDept, region, academicYear):
@@ -219,3 +123,9 @@ def getAllEntries(a_term, a_courseNumber, courseDept, region, academicYear):
                             print match.groups()
 
 #getAllEntries(a_term, a_courseNumber, courseDept, region, academicYear)
+
+getDepartmentList(region, academicYear, a_term)
+numOfDept = len(courseDept)
+getAllClasses(a_term, courseDept, region, academicYear)
+numOfCourse = len(a_courseNumber)
+numOfTitle = len(a_courseTitle)
